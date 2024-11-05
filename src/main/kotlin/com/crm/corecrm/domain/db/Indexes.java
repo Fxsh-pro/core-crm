@@ -5,9 +5,9 @@ package com.crm.corecrm.domain.db;
 
 
 import com.crm.corecrm.domain.db.tables.Dialog;
-import com.crm.corecrm.domain.db.tables.EoperatorDialog;
 import com.crm.corecrm.domain.db.tables.Message;
 import com.crm.corecrm.domain.db.tables.Operator;
+import com.crm.corecrm.domain.db.tables.OperatorDialog;
 import com.crm.corecrm.domain.db.tables.SchemaVersion;
 
 import javax.annotation.Generated;
@@ -35,13 +35,13 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     public static final Index PRIMARY_KEY_7 = Indexes0.PRIMARY_KEY_7;
-    public static final Index CONSTRAINT_INDEX_F = Indexes0.CONSTRAINT_INDEX_F;
-    public static final Index CONSTRAINT_INDEX_F3 = Indexes0.CONSTRAINT_INDEX_F3;
-    public static final Index PRIMARY_KEY_F = Indexes0.PRIMARY_KEY_F;
     public static final Index CONSTRAINT_INDEX_6 = Indexes0.CONSTRAINT_INDEX_6;
     public static final Index PRIMARY_KEY_63 = Indexes0.PRIMARY_KEY_63;
     public static final Index CONSTRAINT_INDEX_1 = Indexes0.CONSTRAINT_INDEX_1;
     public static final Index PRIMARY_KEY_1 = Indexes0.PRIMARY_KEY_1;
+    public static final Index CONSTRAINT_INDEX_2 = Indexes0.CONSTRAINT_INDEX_2;
+    public static final Index CONSTRAINT_INDEX_27 = Indexes0.CONSTRAINT_INDEX_27;
+    public static final Index PRIMARY_KEY_2 = Indexes0.PRIMARY_KEY_2;
     public static final Index PRIMARY_KEY_6 = Indexes0.PRIMARY_KEY_6;
     public static final Index SCHEMA_VERSION_IR_IDX = Indexes0.SCHEMA_VERSION_IR_IDX;
     public static final Index SCHEMA_VERSION_S_IDX = Indexes0.SCHEMA_VERSION_S_IDX;
@@ -53,13 +53,13 @@ public class Indexes {
 
     private static class Indexes0 {
         public static Index PRIMARY_KEY_7 = Internal.createIndex("PRIMARY_KEY_7", Dialog.DIALOG, new OrderField[] { Dialog.DIALOG.ID }, true);
-        public static Index CONSTRAINT_INDEX_F = Internal.createIndex("CONSTRAINT_INDEX_F", EoperatorDialog.EOPERATOR_DIALOG, new OrderField[] { EoperatorDialog.EOPERATOR_DIALOG.SUPPORT_ID }, false);
-        public static Index CONSTRAINT_INDEX_F3 = Internal.createIndex("CONSTRAINT_INDEX_F3", EoperatorDialog.EOPERATOR_DIALOG, new OrderField[] { EoperatorDialog.EOPERATOR_DIALOG.DIALOG_ID }, false);
-        public static Index PRIMARY_KEY_F = Internal.createIndex("PRIMARY_KEY_F", EoperatorDialog.EOPERATOR_DIALOG, new OrderField[] { EoperatorDialog.EOPERATOR_DIALOG.ID }, true);
         public static Index CONSTRAINT_INDEX_6 = Internal.createIndex("CONSTRAINT_INDEX_6", Message.MESSAGE, new OrderField[] { Message.MESSAGE.DIALOG_ID }, false);
         public static Index PRIMARY_KEY_63 = Internal.createIndex("PRIMARY_KEY_63", Message.MESSAGE, new OrderField[] { Message.MESSAGE.ID }, true);
         public static Index CONSTRAINT_INDEX_1 = Internal.createIndex("CONSTRAINT_INDEX_1", Operator.OPERATOR, new OrderField[] { Operator.OPERATOR.LOGIN }, true);
         public static Index PRIMARY_KEY_1 = Internal.createIndex("PRIMARY_KEY_1", Operator.OPERATOR, new OrderField[] { Operator.OPERATOR.ID }, true);
+        public static Index CONSTRAINT_INDEX_2 = Internal.createIndex("CONSTRAINT_INDEX_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.SUPPORT_ID }, false);
+        public static Index CONSTRAINT_INDEX_27 = Internal.createIndex("CONSTRAINT_INDEX_27", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.DIALOG_ID }, false);
+        public static Index PRIMARY_KEY_2 = Internal.createIndex("PRIMARY_KEY_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.ID }, true);
         public static Index PRIMARY_KEY_6 = Internal.createIndex("PRIMARY_KEY_6", SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.VERSION }, true);
         public static Index SCHEMA_VERSION_IR_IDX = Internal.createIndex("schema_version_ir_idx", SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.INSTALLED_RANK }, false);
         public static Index SCHEMA_VERSION_S_IDX = Internal.createIndex("schema_version_s_idx", SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.SUCCESS }, false);

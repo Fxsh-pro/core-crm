@@ -5,9 +5,9 @@ package com.crm.corecrm.domain.db;
 
 
 import com.crm.corecrm.domain.db.tables.Dialog;
-import com.crm.corecrm.domain.db.tables.EoperatorDialog;
 import com.crm.corecrm.domain.db.tables.Message;
 import com.crm.corecrm.domain.db.tables.Operator;
+import com.crm.corecrm.domain.db.tables.OperatorDialog;
 import com.crm.corecrm.domain.db.tables.SchemaVersion;
 
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = -250098601;
+    private static final long serialVersionUID = 1062213457;
 
     /**
      * The reference instance of <code>PUBLIC</code>
@@ -47,11 +47,6 @@ public class Public extends SchemaImpl {
     public final Dialog DIALOG = com.crm.corecrm.domain.db.tables.Dialog.DIALOG;
 
     /**
-     * The table <code>PUBLIC.EOPERATOR_DIALOG</code>.
-     */
-    public final EoperatorDialog EOPERATOR_DIALOG = com.crm.corecrm.domain.db.tables.EoperatorDialog.EOPERATOR_DIALOG;
-
-    /**
      * The table <code>PUBLIC.MESSAGE</code>.
      */
     public final Message MESSAGE = com.crm.corecrm.domain.db.tables.Message.MESSAGE;
@@ -60,6 +55,11 @@ public class Public extends SchemaImpl {
      * The table <code>PUBLIC.OPERATOR</code>.
      */
     public final Operator OPERATOR = com.crm.corecrm.domain.db.tables.Operator.OPERATOR;
+
+    /**
+     * The table <code>PUBLIC.OPERATOR_DIALOG</code>.
+     */
+    public final OperatorDialog OPERATOR_DIALOG = com.crm.corecrm.domain.db.tables.OperatorDialog.OPERATOR_DIALOG;
 
     /**
      * The table <code>PUBLIC.schema_version</code>.
@@ -92,9 +92,9 @@ public class Public extends SchemaImpl {
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
             Dialog.DIALOG,
-            EoperatorDialog.EOPERATOR_DIALOG,
             Message.MESSAGE,
             Operator.OPERATOR,
+            OperatorDialog.OPERATOR_DIALOG,
             SchemaVersion.SCHEMA_VERSION);
     }
 }

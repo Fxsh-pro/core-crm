@@ -5,9 +5,9 @@ package com.crm.corecrm.domain.db;
 
 
 import com.crm.corecrm.domain.db.tables.Dialog;
-import com.crm.corecrm.domain.db.tables.EoperatorDialog;
 import com.crm.corecrm.domain.db.tables.Message;
 import com.crm.corecrm.domain.db.tables.Operator;
+import com.crm.corecrm.domain.db.tables.OperatorDialog;
 import com.crm.corecrm.domain.db.tables.SchemaVersion;
 
 import javax.annotation.Generated;
@@ -32,11 +32,6 @@ public class Tables {
     public static final Dialog DIALOG = com.crm.corecrm.domain.db.tables.Dialog.DIALOG;
 
     /**
-     * The table <code>PUBLIC.EOPERATOR_DIALOG</code>.
-     */
-    public static final EoperatorDialog EOPERATOR_DIALOG = com.crm.corecrm.domain.db.tables.EoperatorDialog.EOPERATOR_DIALOG;
-
-    /**
      * The table <code>PUBLIC.MESSAGE</code>.
      */
     public static final Message MESSAGE = com.crm.corecrm.domain.db.tables.Message.MESSAGE;
@@ -45,6 +40,11 @@ public class Tables {
      * The table <code>PUBLIC.OPERATOR</code>.
      */
     public static final Operator OPERATOR = com.crm.corecrm.domain.db.tables.Operator.OPERATOR;
+
+    /**
+     * The table <code>PUBLIC.OPERATOR_DIALOG</code>.
+     */
+    public static final OperatorDialog OPERATOR_DIALOG = com.crm.corecrm.domain.db.tables.OperatorDialog.OPERATOR_DIALOG;
 
     /**
      * The table <code>PUBLIC.schema_version</code>.
