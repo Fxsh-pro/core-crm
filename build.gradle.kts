@@ -45,6 +45,12 @@ dependencies {
     runtimeOnly ("io.jsonwebtoken:jjwt-jackson:0.11.5")
 
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
+
+    /**
+     * Telegram
+     */
+    implementation(group = "org.telegram", name = "telegrambots", version = "6.5.0")
+
 }
 
 kotlin {

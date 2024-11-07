@@ -11,6 +11,9 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
+import org.telegram.telegrambots.meta.TelegramBotsApi
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession
 
 @Configuration
 class ApplicationConfig(
@@ -45,5 +48,13 @@ class ApplicationConfig(
         return SecurityScheme().type(SecurityScheme.Type.HTTP)
             .bearerFormat("JWT")
             .scheme("bearer")
+    }
+
+    @Bean
+    @Throws(TelegramApiException::class)
+    fun telegramBotsApi(telegramNotificationBot: TelegramNotificationBot): TelegramBotsApi {
+        val api = TelegramBotsApi(DefaultBotSession::class.java)
+        api.registerBot(telegramNotificationBot)
+        return api
     }
 }

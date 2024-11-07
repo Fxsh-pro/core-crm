@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OperatorDialog extends TableImpl<OperatorDialogRecord> {
 
-    private static final long serialVersionUID = -837043977;
+    private static final long serialVersionUID = 778635239;
 
     /**
      * The reference instance of <code>PUBLIC.OPERATOR_DIALOG</code>
@@ -66,9 +66,9 @@ public class OperatorDialog extends TableImpl<OperatorDialogRecord> {
     public final TableField<OperatorDialogRecord, Long> SUPPORT_ID = createField("SUPPORT_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
-     * The column <code>PUBLIC.OPERATOR_DIALOG.DIALOG_ID</code>.
+     * The column <code>PUBLIC.OPERATOR_DIALOG.CHAT_ID</code>.
      */
-    public final TableField<OperatorDialogRecord, Long> DIALOG_ID = createField("DIALOG_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
+    public final TableField<OperatorDialogRecord, Long> CHAT_ID = createField("CHAT_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * Create a <code>PUBLIC.OPERATOR_DIALOG</code> table reference

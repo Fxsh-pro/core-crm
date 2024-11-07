@@ -4,7 +4,8 @@
 package com.crm.corecrm.domain.db;
 
 
-import com.crm.corecrm.domain.db.tables.Dialog;
+import com.crm.corecrm.domain.db.tables.Chat;
+import com.crm.corecrm.domain.db.tables.Customer;
 import com.crm.corecrm.domain.db.tables.Message;
 import com.crm.corecrm.domain.db.tables.Operator;
 import com.crm.corecrm.domain.db.tables.OperatorDialog;
@@ -27,9 +28,14 @@ import javax.annotation.Generated;
 public class Tables {
 
     /**
-     * The table <code>PUBLIC.DIALOG</code>.
+     * The table <code>PUBLIC.CHAT</code>.
      */
-    public static final Dialog DIALOG = com.crm.corecrm.domain.db.tables.Dialog.DIALOG;
+    public static final Chat CHAT = com.crm.corecrm.domain.db.tables.Chat.CHAT;
+
+    /**
+     * The table <code>PUBLIC.CUSTOMER</code>.
+     */
+    public static final Customer CUSTOMER = com.crm.corecrm.domain.db.tables.Customer.CUSTOMER;
 
     /**
      * The table <code>PUBLIC.MESSAGE</code>.

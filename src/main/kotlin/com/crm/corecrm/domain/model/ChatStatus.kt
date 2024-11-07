@@ -1,6 +1,6 @@
 package com.crm.corecrm.domain.model
 
-enum class DialogStatus {
+enum class ChatStatus {
     OPEN,
     IN_WORK,
     CLOSE,

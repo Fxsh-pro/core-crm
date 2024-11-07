@@ -11,15 +11,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Repository
 
 @Repository
-class OperatorRepository(private val dsl: DSLContext) {
+class OperatorRepository(dsl: DSLContext) : AbstractRepository(dsl) {
     @PostConstruct
     fun t() {
         val a = LoggerFactory.getLogger(OperatorRepository::class.java)
-        println(dsl.selectFrom(OPERATOR).fetch())
+        println(db.selectFrom(OPERATOR).fetch())
     }
 
     fun findByLogin(login: String): Operator {
-        val record = dsl.selectFrom(OPERATOR)
+        val record = db.selectFrom(OPERATOR)
             .where(OPERATOR.LOGIN.eq(login))
             .fetchOne() ?: throw UsernameNotFoundException("Operator not found")
 
@@ -35,7 +35,7 @@ class OperatorRepository(private val dsl: DSLContext) {
 
 
         // operator.setId(lastId + 1)
-        dsl
+        db
             .insertInto(OPERATOR, OPERATOR.LOGIN, OPERATOR.PASSWORD, OPERATOR.NAME)
             .values(operator.username, operator.password, operator.getName())
             .execute()

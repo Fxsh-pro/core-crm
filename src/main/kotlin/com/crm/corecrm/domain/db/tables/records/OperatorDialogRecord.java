@@ -28,7 +28,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogRecord> implements Record3<Integer, Long, Long> {
 
-    private static final long serialVersionUID = -1870107088;
+    private static final long serialVersionUID = 1653203536;
 
     /**
      * Setter for <code>PUBLIC.OPERATOR_DIALOG.ID</code>.
@@ -59,16 +59,16 @@ public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogReco
     }
 
     /**
-     * Setter for <code>PUBLIC.OPERATOR_DIALOG.DIALOG_ID</code>.
+     * Setter for <code>PUBLIC.OPERATOR_DIALOG.CHAT_ID</code>.
      */
-    public void setDialogId(Long value) {
+    public void setChatId(Long value) {
         set(2, value);
     }
 
     /**
-     * Getter for <code>PUBLIC.OPERATOR_DIALOG.DIALOG_ID</code>.
+     * Getter for <code>PUBLIC.OPERATOR_DIALOG.CHAT_ID</code>.
      */
-    public Long getDialogId() {
+    public Long getChatId() {
         return (Long) get(2);
     }
 
@@ -125,7 +125,7 @@ public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogReco
      */
     @Override
     public Field<Long> field3() {
-        return OperatorDialog.OPERATOR_DIALOG.DIALOG_ID;
+        return OperatorDialog.OPERATOR_DIALOG.CHAT_ID;
     }
 
     /**
@@ -149,7 +149,7 @@ public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogReco
      */
     @Override
     public Long component3() {
-        return getDialogId();
+        return getChatId();
     }
 
     /**
@@ -173,7 +173,7 @@ public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogReco
      */
     @Override
     public Long value3() {
-        return getDialogId();
+        return getChatId();
     }
 
     /**
@@ -199,7 +199,7 @@ public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogReco
      */
     @Override
     public OperatorDialogRecord value3(Long value) {
-        setDialogId(value);
+        setChatId(value);
         return this;
     }
 
@@ -228,11 +228,11 @@ public class OperatorDialogRecord extends UpdatableRecordImpl<OperatorDialogReco
     /**
      * Create a detached, initialised OperatorDialogRecord
      */
-    public OperatorDialogRecord(Integer id, Long supportId, Long dialogId) {
+    public OperatorDialogRecord(Integer id, Long supportId, Long chatId) {
         super(OperatorDialog.OPERATOR_DIALOG);
 
         set(0, id);
         set(1, supportId);
-        set(2, dialogId);
+        set(2, chatId);
     }
 }

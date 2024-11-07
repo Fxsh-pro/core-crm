@@ -28,7 +28,7 @@ import org.jooq.impl.UpdatableRecordImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements Record6<Integer, Long, Long, Long, String, String> {
 
-    private static final long serialVersionUID = -1564930867;
+    private static final long serialVersionUID = -1025374067;
 
     /**
      * Setter for <code>PUBLIC.MESSAGE.ID</code>.
@@ -45,16 +45,16 @@ public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements
     }
 
     /**
-     * Setter for <code>PUBLIC.MESSAGE.DIALOG_ID</code>.
+     * Setter for <code>PUBLIC.MESSAGE.CHAT_ID</code>.
      */
-    public void setDialogId(Long value) {
+    public void setChatId(Long value) {
         set(1, value);
     }
 
     /**
-     * Getter for <code>PUBLIC.MESSAGE.DIALOG_ID</code>.
+     * Getter for <code>PUBLIC.MESSAGE.CHAT_ID</code>.
      */
-    public Long getDialogId() {
+    public Long getChatId() {
         return (Long) get(1);
     }
 
@@ -159,7 +159,7 @@ public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements
      */
     @Override
     public Field<Long> field2() {
-        return Message.MESSAGE.DIALOG_ID;
+        return Message.MESSAGE.CHAT_ID;
     }
 
     /**
@@ -207,7 +207,7 @@ public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements
      */
     @Override
     public Long component2() {
-        return getDialogId();
+        return getChatId();
     }
 
     /**
@@ -255,7 +255,7 @@ public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements
      */
     @Override
     public Long value2() {
-        return getDialogId();
+        return getChatId();
     }
 
     /**
@@ -304,7 +304,7 @@ public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements
      */
     @Override
     public MessageRecord value2(Long value) {
-        setDialogId(value);
+        setChatId(value);
         return this;
     }
 
@@ -372,11 +372,11 @@ public class MessageRecord extends UpdatableRecordImpl<MessageRecord> implements
     /**
      * Create a detached, initialised MessageRecord
      */
-    public MessageRecord(Integer id, Long dialogId, Long createdAt, Long createdBy, String text, String type) {
+    public MessageRecord(Integer id, Long chatId, Long createdAt, Long createdBy, String text, String type) {
         super(Message.MESSAGE);
 
         set(0, id);
-        set(1, dialogId);
+        set(1, chatId);
         set(2, createdAt);
         set(3, createdBy);
         set(4, text);

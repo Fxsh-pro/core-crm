@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Message extends TableImpl<MessageRecord> {
 
-    private static final long serialVersionUID = 1114072860;
+    private static final long serialVersionUID = 1914153740;
 
     /**
      * The reference instance of <code>PUBLIC.MESSAGE</code>
@@ -61,9 +61,9 @@ public class Message extends TableImpl<MessageRecord> {
     public final TableField<MessageRecord, Integer> ID = createField("ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>PUBLIC.MESSAGE.DIALOG_ID</code>.
+     * The column <code>PUBLIC.MESSAGE.CHAT_ID</code>.
      */
-    public final TableField<MessageRecord, Long> DIALOG_ID = createField("DIALOG_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
+    public final TableField<MessageRecord, Long> CHAT_ID = createField("CHAT_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
 
     /**
      * The column <code>PUBLIC.MESSAGE.CREATED_AT</code>.

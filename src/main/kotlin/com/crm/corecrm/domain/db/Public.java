@@ -4,7 +4,8 @@
 package com.crm.corecrm.domain.db;
 
 
-import com.crm.corecrm.domain.db.tables.Dialog;
+import com.crm.corecrm.domain.db.tables.Chat;
+import com.crm.corecrm.domain.db.tables.Customer;
 import com.crm.corecrm.domain.db.tables.Message;
 import com.crm.corecrm.domain.db.tables.Operator;
 import com.crm.corecrm.domain.db.tables.OperatorDialog;
@@ -34,7 +35,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-    private static final long serialVersionUID = 1062213457;
+    private static final long serialVersionUID = -511663761;
 
     /**
      * The reference instance of <code>PUBLIC</code>
@@ -42,9 +43,14 @@ public class Public extends SchemaImpl {
     public static final Public PUBLIC = new Public();
 
     /**
-     * The table <code>PUBLIC.DIALOG</code>.
+     * The table <code>PUBLIC.CHAT</code>.
      */
-    public final Dialog DIALOG = com.crm.corecrm.domain.db.tables.Dialog.DIALOG;
+    public final Chat CHAT = com.crm.corecrm.domain.db.tables.Chat.CHAT;
+
+    /**
+     * The table <code>PUBLIC.CUSTOMER</code>.
+     */
+    public final Customer CUSTOMER = com.crm.corecrm.domain.db.tables.Customer.CUSTOMER;
 
     /**
      * The table <code>PUBLIC.MESSAGE</code>.
@@ -91,7 +97,8 @@ public class Public extends SchemaImpl {
 
     private final List<Table<?>> getTables0() {
         return Arrays.<Table<?>>asList(
-            Dialog.DIALOG,
+            Chat.CHAT,
+            Customer.CUSTOMER,
             Message.MESSAGE,
             Operator.OPERATOR,
             OperatorDialog.OPERATOR_DIALOG,

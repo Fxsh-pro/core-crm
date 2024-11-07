@@ -4,7 +4,8 @@
 package com.crm.corecrm.domain.db;
 
 
-import com.crm.corecrm.domain.db.tables.Dialog;
+import com.crm.corecrm.domain.db.tables.Chat;
+import com.crm.corecrm.domain.db.tables.Customer;
 import com.crm.corecrm.domain.db.tables.Message;
 import com.crm.corecrm.domain.db.tables.Operator;
 import com.crm.corecrm.domain.db.tables.OperatorDialog;
@@ -34,7 +35,11 @@ public class Indexes {
     // INDEX definitions
     // -------------------------------------------------------------------------
 
-    public static final Index PRIMARY_KEY_7 = Indexes0.PRIMARY_KEY_7;
+    public static final Index CONSTRAINT_INDEX_1F = Indexes0.CONSTRAINT_INDEX_1F;
+    public static final Index PRIMARY_KEY_1F = Indexes0.PRIMARY_KEY_1F;
+    public static final Index CONSTRAINT_INDEX_5 = Indexes0.CONSTRAINT_INDEX_5;
+    public static final Index CONSTRAINT_INDEX_52 = Indexes0.CONSTRAINT_INDEX_52;
+    public static final Index PRIMARY_KEY_5 = Indexes0.PRIMARY_KEY_5;
     public static final Index CONSTRAINT_INDEX_6 = Indexes0.CONSTRAINT_INDEX_6;
     public static final Index PRIMARY_KEY_63 = Indexes0.PRIMARY_KEY_63;
     public static final Index CONSTRAINT_INDEX_1 = Indexes0.CONSTRAINT_INDEX_1;
@@ -52,13 +57,17 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
-        public static Index PRIMARY_KEY_7 = Internal.createIndex("PRIMARY_KEY_7", Dialog.DIALOG, new OrderField[] { Dialog.DIALOG.ID }, true);
-        public static Index CONSTRAINT_INDEX_6 = Internal.createIndex("CONSTRAINT_INDEX_6", Message.MESSAGE, new OrderField[] { Message.MESSAGE.DIALOG_ID }, false);
+        public static Index CONSTRAINT_INDEX_1F = Internal.createIndex("CONSTRAINT_INDEX_1F", Chat.CHAT, new OrderField[] { Chat.CHAT.TG_CHAT_ID }, true);
+        public static Index PRIMARY_KEY_1F = Internal.createIndex("PRIMARY_KEY_1F", Chat.CHAT, new OrderField[] { Chat.CHAT.ID }, true);
+        public static Index CONSTRAINT_INDEX_5 = Internal.createIndex("CONSTRAINT_INDEX_5", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.TG_ID }, true);
+        public static Index CONSTRAINT_INDEX_52 = Internal.createIndex("CONSTRAINT_INDEX_52", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.FIRSTNAME }, true);
+        public static Index PRIMARY_KEY_5 = Internal.createIndex("PRIMARY_KEY_5", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.ID }, true);
+        public static Index CONSTRAINT_INDEX_6 = Internal.createIndex("CONSTRAINT_INDEX_6", Message.MESSAGE, new OrderField[] { Message.MESSAGE.CHAT_ID }, false);
         public static Index PRIMARY_KEY_63 = Internal.createIndex("PRIMARY_KEY_63", Message.MESSAGE, new OrderField[] { Message.MESSAGE.ID }, true);
         public static Index CONSTRAINT_INDEX_1 = Internal.createIndex("CONSTRAINT_INDEX_1", Operator.OPERATOR, new OrderField[] { Operator.OPERATOR.LOGIN }, true);
         public static Index PRIMARY_KEY_1 = Internal.createIndex("PRIMARY_KEY_1", Operator.OPERATOR, new OrderField[] { Operator.OPERATOR.ID }, true);
         public static Index CONSTRAINT_INDEX_2 = Internal.createIndex("CONSTRAINT_INDEX_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.SUPPORT_ID }, false);
-        public static Index CONSTRAINT_INDEX_27 = Internal.createIndex("CONSTRAINT_INDEX_27", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.DIALOG_ID }, false);
+        public static Index CONSTRAINT_INDEX_27 = Internal.createIndex("CONSTRAINT_INDEX_27", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.CHAT_ID }, false);
         public static Index PRIMARY_KEY_2 = Internal.createIndex("PRIMARY_KEY_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.ID }, true);
         public static Index PRIMARY_KEY_6 = Internal.createIndex("PRIMARY_KEY_6", SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.VERSION }, true);
         public static Index SCHEMA_VERSION_IR_IDX = Internal.createIndex("schema_version_ir_idx", SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.INSTALLED_RANK }, false);
