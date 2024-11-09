@@ -40,10 +40,10 @@ class ChatService(
         val chatIds = chats.mapNotNull { it.id }
         val messages = messageService.getMessagesByChatIds(chatIds)
 
-        val customerMessageIds = messages.values.flatten()
+        val customerIds = messages.values.flatten()
             .filter { it.type == MessageType.IN }
-            .mapNotNull { it.id }
-        val customersById = customerService.getCustomersByIds(customerMessageIds)
+            .map { it.createdBy }
+        val customersById = customerService.getCustomersByIds(customerIds)
 
         return chats.mapNotNull { chat ->
             val chatMessages = messages[chat.id] ?: return@mapNotNull null
