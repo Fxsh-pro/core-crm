@@ -5,6 +5,7 @@ import com.crm.corecrm.domain.model.Message
 import com.crm.corecrm.domain.model.MessageType
 import com.crm.corecrm.service.CurrentUserService
 import com.crm.corecrm.service.MessageService
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -24,6 +25,9 @@ class MessageController(
     @PostMapping(
         path = ["/message"],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
+    )
+    @Operation(
+        summary = "Send a message to the user. Pass only chatId and text for the request",
     )
     fun send(@RequestBody messageDto: MessageDto) {
         val message = Message(

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 class OperatorController {
 
     @GetMapping(
-        path = ["/qw"],
+        path = ["/test"],
     )
-    fun suggest(): String = "dsf"
+    fun suggest(): String = "test"
 }

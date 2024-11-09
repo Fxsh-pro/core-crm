@@ -9,6 +9,7 @@ import com.crm.corecrm.domain.repository.ChatRepository
 import com.crm.corecrm.domain.repository.MessageRepository
 import com.crm.corecrm.service.CustomerService
 import com.crm.corecrm.service.OperatorService
+import jakarta.annotation.PostConstruct
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -27,6 +28,13 @@ class TelegramNotificationBot(
     private val operatorService: OperatorService,
 
 ) : TelegramLongPollingBot(botToken) {
+
+    @PostConstruct
+    fun t() {
+        println("Token : $botToken")
+    }
+
+    val LOG = LoggerFactory.getLogger(TelegramNotificationBot::class.java)
 
     private val log = LoggerFactory.getLogger(TelegramNotificationBot::class.java)
 

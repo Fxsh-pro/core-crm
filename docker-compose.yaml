@@ -9,8 +9,10 @@ services:
 #      - POSTGRES_USER=user
 #      - POSTGRES_PASSWORD=password
 #      - POSTGRES_DB=postgres
+    expose:
+      - 6432
     ports:
-      - '6666:6666'
+      - '6432:5432'
   app:
     build: .
     environment:
