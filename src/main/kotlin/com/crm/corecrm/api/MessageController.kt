@@ -23,7 +23,7 @@ class MessageController(
 ) {
 
     @PostMapping(
-        path = ["/message"],
+        path = ["/"],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
     @Operation(

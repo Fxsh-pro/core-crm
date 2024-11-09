@@ -26,6 +26,7 @@ class ChatController(
 ) {
 
     @PostMapping(
+        path = ["/get"],
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
     @Operation(
