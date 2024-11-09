@@ -1,11 +1,9 @@
 package com.crm.corecrm.api.dto
 
-import com.crm.corecrm.domain.model.ChatStatus
-
 data class ChatDto(
-    val id: Long,
+    val id: Int?,
     val messages : List<MessageDto>,
     val creatorBy : String,
-    val createdAt: Long,
-    val status: ChatStatus
+    val createdAt: Int,
+    val status: ChatStatusDto
 )

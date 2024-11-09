@@ -2,6 +2,6 @@ package com.crm.corecrm.domain.model
 
 data class OperatorDialog(
     val id: Int? = null,
-    val supportId: Long,
-    val chatId: Long
+    val supportId: Int,
+    val chatId: Int
 )

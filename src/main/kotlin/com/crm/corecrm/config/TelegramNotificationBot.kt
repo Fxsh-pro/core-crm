@@ -2,25 +2,29 @@ package com.crm.corecrm.config
 
 import com.crm.corecrm.domain.model.Chat
 import com.crm.corecrm.domain.model.ChatStatus
+import com.crm.corecrm.domain.model.Customer
 import com.crm.corecrm.domain.model.Message
 import com.crm.corecrm.domain.model.MessageType
-import com.crm.corecrm.service.ChatService
+import com.crm.corecrm.domain.repository.ChatRepository
+import com.crm.corecrm.domain.repository.MessageRepository
 import com.crm.corecrm.service.CustomerService
-import com.crm.corecrm.service.MessageHandlerService
+import com.crm.corecrm.service.OperatorService
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.telegram.telegrambots.bots.TelegramLongPollingBot
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage
 import org.telegram.telegrambots.meta.api.objects.Update
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException
 
 @Service
 class TelegramNotificationBot(
     @Value("\${telegram.bot.token}") private val botToken: String,
     @Value("\${telegram.bot.name}") private val botName: String,
-    private val messageHandlerService: MessageHandlerService,
-    private val chatService: ChatService,
+    private val messageRepository: MessageRepository,
+    private val chatRepository: ChatRepository,
     private val customerService: CustomerService,
+    private val operatorService: OperatorService,
 
 ) : TelegramLongPollingBot(botToken) {
 
@@ -31,34 +35,43 @@ class TelegramNotificationBot(
     override fun getBotUsername(): String = botName
 
     override fun onUpdateReceived(update: Update) {
-        val tgChatId = update.message.chatId.toLong()
+        val tgChatId = update.message.chatId.toInt()
+        val tgChat = update.message.chat
+        val customer = Customer(
+            tgId = tgChatId,
+            firstName = tgChat.firstName ?: "NoFirstName",
+            lastName = tgChat.lastName ?: "NoLastName" ,
+            userName = tgChat.userName ?: "NoUserName" ,
+        )
 
-        // val
+        val customerId = customerService.getIdOrCreate(customer)
+
         val chat = Chat(
             tgChatId = tgChatId,
-            creatorBy = update.message.chatId.toLong(),
-            createdAt = update.message.date.toLong(),
+            creatorBy = customerId,
+            createdAt = update.message.date,
             status = ChatStatus.OPEN,
         )
 
-        val chatId = chatService.getIdOrCreate(chat)
+        val chatId = chatRepository.getIdOrCreate(chat)
 
         val message = Message(
             chatId = chatId,
-            createdAt = update.message.date.toLong(),
-            createdBy = 1,
+            createdAt = update.message.date,
+            createdBy = customerId,
             text = update.message.text,
             type = MessageType.IN
         )
 
-        messageHandlerService.saveMessage(message)
+        messageRepository.save(message)
+        operatorService.linkChatToOperator(chatId)
 
-        val sendMessage = SendMessage.builder()
-            .chatId(tgChatId)
-            .text("messageSaved")
-            .build()
-
-        execute(sendMessage)
+        // val sendMessage = SendMessage.builder()
+        //     .chatId(tgChatId.toLong())
+        //     .text("messageSaved")
+        //     .build()
+        //
+        // execute(sendMessage)
     }
     //     when (message) {
     //         "/reg" -> {
@@ -82,18 +95,20 @@ class TelegramNotificationBot(
     //     }
     // }
     //
-    // private fun sendMessage(chatId: Long, message: String) {
-    //     val sendMessage = SendMessage.builder()
-    //         .chatId(chatId.toString())
-    //         .text(message)
-    //         .build()
-    //
-    //     try {
-    //         execute(sendMessage)
-    //     } catch (e: TelegramApiException) {
-    //         log.error("Error occurred while sending message: {}", e.message)
-    //     }
-    // }
+
+    fun sendMessage(chatId: Int, message: String) {
+        val sendMessage = SendMessage.builder()
+            .chatId(chatId.toString())
+            .text(message)
+            .build()
+
+        try {
+            execute(sendMessage)
+            println("YES")
+        } catch (e: TelegramApiException) {
+            log.error("Error occurred while sending message: {}", e.message)
+        }
+    }
     //
     // private fun processUserResponse(chatId: Long, response: String) {
     //     try {

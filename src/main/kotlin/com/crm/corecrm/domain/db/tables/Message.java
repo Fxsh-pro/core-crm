@@ -40,7 +40,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Message extends TableImpl<MessageRecord> {
 
-    private static final long serialVersionUID = 1914153740;
+    private static final long serialVersionUID = -798159699;
 
     /**
      * The reference instance of <code>PUBLIC.MESSAGE</code>
@@ -63,17 +63,17 @@ public class Message extends TableImpl<MessageRecord> {
     /**
      * The column <code>PUBLIC.MESSAGE.CHAT_ID</code>.
      */
-    public final TableField<MessageRecord, Long> CHAT_ID = createField("CHAT_ID", org.jooq.impl.SQLDataType.BIGINT, this, "");
+    public final TableField<MessageRecord, Integer> CHAT_ID = createField("CHAT_ID", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
     /**
      * The column <code>PUBLIC.MESSAGE.CREATED_AT</code>.
      */
-    public final TableField<MessageRecord, Long> CREATED_AT = createField("CREATED_AT", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<MessageRecord, Integer> CREATED_AT = createField("CREATED_AT", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.MESSAGE.CREATED_BY</code>.
      */
-    public final TableField<MessageRecord, Long> CREATED_BY = createField("CREATED_BY", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<MessageRecord, Integer> CREATED_BY = createField("CREATED_BY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.MESSAGE.TEXT</code>.

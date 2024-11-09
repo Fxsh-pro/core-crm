@@ -1,13 +1,14 @@
 package com.crm.corecrm.domain.repository
 
+// import org.springframework.security.core.userdetails.UsernameNotFoundException
 import com.crm.corecrm.domain.db.tables.Operator.OPERATOR
+import com.crm.corecrm.domain.db.tables.OperatorDialog.OPERATOR_DIALOG
 import com.crm.corecrm.domain.db.tables.records.OperatorRecord
 import com.crm.corecrm.domain.model.Operator
 import jakarta.annotation.PostConstruct
 import org.jooq.DSLContext
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.userdetails.UsernameNotFoundException
-// import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -41,6 +42,15 @@ class OperatorRepository(dsl: DSLContext) : AbstractRepository(dsl) {
             .execute()
 
     }
+
+    fun linkChatToOperator(chatId: Int, operatorId: Int) {
+        val record = db.newRecord(OPERATOR_DIALOG).apply {
+            this.chatId = chatId
+            this.operatorId = operatorId
+        }
+        record.store()
+    }
+
 
     fun OperatorRecord.toModel(): Operator {
         return Operator(

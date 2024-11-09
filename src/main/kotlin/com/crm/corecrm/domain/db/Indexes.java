@@ -66,7 +66,7 @@ public class Indexes {
         public static Index PRIMARY_KEY_63 = Internal.createIndex("PRIMARY_KEY_63", Message.MESSAGE, new OrderField[] { Message.MESSAGE.ID }, true);
         public static Index CONSTRAINT_INDEX_1 = Internal.createIndex("CONSTRAINT_INDEX_1", Operator.OPERATOR, new OrderField[] { Operator.OPERATOR.LOGIN }, true);
         public static Index PRIMARY_KEY_1 = Internal.createIndex("PRIMARY_KEY_1", Operator.OPERATOR, new OrderField[] { Operator.OPERATOR.ID }, true);
-        public static Index CONSTRAINT_INDEX_2 = Internal.createIndex("CONSTRAINT_INDEX_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.SUPPORT_ID }, false);
+        public static Index CONSTRAINT_INDEX_2 = Internal.createIndex("CONSTRAINT_INDEX_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.OPERATOR_ID }, false);
         public static Index CONSTRAINT_INDEX_27 = Internal.createIndex("CONSTRAINT_INDEX_27", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.CHAT_ID }, false);
         public static Index PRIMARY_KEY_2 = Internal.createIndex("PRIMARY_KEY_2", OperatorDialog.OPERATOR_DIALOG, new OrderField[] { OperatorDialog.OPERATOR_DIALOG.ID }, true);
         public static Index PRIMARY_KEY_6 = Internal.createIndex("PRIMARY_KEY_6", SchemaVersion.SCHEMA_VERSION, new OrderField[] { SchemaVersion.SCHEMA_VERSION.VERSION }, true);

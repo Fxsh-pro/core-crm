@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Chat extends TableImpl<ChatRecord> {
 
-    private static final long serialVersionUID = 1679445630;
+    private static final long serialVersionUID = 383746691;
 
     /**
      * The reference instance of <code>PUBLIC.CHAT</code>
@@ -62,17 +62,17 @@ public class Chat extends TableImpl<ChatRecord> {
     /**
      * The column <code>PUBLIC.CHAT.TG_CHAT_ID</code>.
      */
-    public final TableField<ChatRecord, Long> TG_CHAT_ID = createField("TG_CHAT_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<ChatRecord, Integer> TG_CHAT_ID = createField("TG_CHAT_ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.CHAT.CREATOR_BY</code>.
      */
-    public final TableField<ChatRecord, Long> CREATOR_BY = createField("CREATOR_BY", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<ChatRecord, Integer> CREATOR_BY = createField("CREATOR_BY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.CHAT.CREATED_AT</code>.
      */
-    public final TableField<ChatRecord, Long> CREATED_AT = createField("CREATED_AT", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<ChatRecord, Integer> CREATED_AT = createField("CREATED_AT", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.CHAT.STATUS</code>.

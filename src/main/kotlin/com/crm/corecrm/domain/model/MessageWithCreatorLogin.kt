@@ -1,10 +1,10 @@
 package com.crm.corecrm.domain.model
 
-data class Message(
+data class MessageWithCreatorLogin (
     val id: Int? = null,
     val chatId: Int,
     val createdAt: Int,
-    val createdBy: Int,
+    val createdBy: String,
     val text: String,
     val type: MessageType
 )

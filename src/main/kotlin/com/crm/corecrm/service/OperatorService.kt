@@ -27,4 +27,9 @@ class OperatorService(
         val token: String = jwtService.generateToken(user)
         return AuthenticationResponse(token)
     }
+
+
+    fun linkChatToOperator(chatId: Int) {
+        operatorRepository.linkChatToOperator(chatId, 1)
+    }
 }

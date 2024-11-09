@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Customer extends TableImpl<CustomerRecord> {
 
-    private static final long serialVersionUID = -1825780941;
+    private static final long serialVersionUID = 861929430;
 
     /**
      * The reference instance of <code>PUBLIC.CUSTOMER</code>
@@ -62,7 +62,7 @@ public class Customer extends TableImpl<CustomerRecord> {
     /**
      * The column <code>PUBLIC.CUSTOMER.TG_ID</code>.
      */
-    public final TableField<CustomerRecord, Long> TG_ID = createField("TG_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<CustomerRecord, Integer> TG_ID = createField("TG_ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.CUSTOMER.FIRSTNAME</code>.

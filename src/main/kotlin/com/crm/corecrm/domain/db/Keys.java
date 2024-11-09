@@ -99,7 +99,7 @@ public class Keys {
 
     private static class ForeignKeys0 {
         public static final ForeignKey<MessageRecord, ChatRecord> CONSTRAINT_63 = Internal.createForeignKey(com.crm.corecrm.domain.db.Keys.CONSTRAINT_1F, Message.MESSAGE, "CONSTRAINT_63", Message.MESSAGE.CHAT_ID);
-        public static final ForeignKey<OperatorDialogRecord, OperatorRecord> CONSTRAINT_27 = Internal.createForeignKey(com.crm.corecrm.domain.db.Keys.CONSTRAINT_1, OperatorDialog.OPERATOR_DIALOG, "CONSTRAINT_27", OperatorDialog.OPERATOR_DIALOG.SUPPORT_ID);
+        public static final ForeignKey<OperatorDialogRecord, OperatorRecord> CONSTRAINT_27 = Internal.createForeignKey(com.crm.corecrm.domain.db.Keys.CONSTRAINT_1, OperatorDialog.OPERATOR_DIALOG, "CONSTRAINT_27", OperatorDialog.OPERATOR_DIALOG.OPERATOR_ID);
         public static final ForeignKey<OperatorDialogRecord, ChatRecord> CONSTRAINT_274 = Internal.createForeignKey(com.crm.corecrm.domain.db.Keys.CONSTRAINT_1F, OperatorDialog.OPERATOR_DIALOG, "CONSTRAINT_274", OperatorDialog.OPERATOR_DIALOG.CHAT_ID);
     }
 }
