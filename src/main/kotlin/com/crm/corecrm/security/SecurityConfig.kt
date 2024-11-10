@@ -17,7 +17,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 @EnableWebSecurity
 class SecurityConfig(
     private val jwtAuthFilter: JwtAuthenticationFilter,
-    private val authenticationProvider: AuthenticationProvider
+    private val authenticationProvider: AuthenticationProvider,
+    @Value("\${security.cors.allowed_origins:}")
+    private val  allowedOrigins: List<String>,
+    @Value("\${security.cors.add:false}")
+    private val toAdd: Boolean,
 ) {
 
     companion object {
@@ -34,7 +38,7 @@ class SecurityConfig(
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .cors { }
+            .cors{ it.configurationSource(corsConfigurationSource(allowedOrigins)) }
             .csrf { it.disable() }
             .authorizeHttpRequests { req ->
                 req
@@ -51,16 +55,18 @@ class SecurityConfig(
         return http.build()
     }
 
-
     @Bean
-    fun corsConfigurationSource(@Value("\${security.cors.allowed_origins:}") origins: List<String>): CorsConfigurationSource {
-        println("HELLO " + origins)
-        val configuration = CorsConfiguration().apply {
-            allowedOrigins = origins
-            allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "OPTIONS")
-            allowedHeaders = listOf("*")
-            allowCredentials = true
+    fun corsConfigurationSource(@Value("\${security.cors.allowed_origins:}") allOrigins: List<String>): CorsConfigurationSource? {
+        val configuration = CorsConfiguration()
+        val origins = mutableListOf("*")
+        if (toAdd) {
+            origins.addAll(allOrigins)
+            println("ADDED $allOrigins to Origins: $origins")
         }
+        configuration.allowedOrigins = origins
+        configuration.allowedMethods = listOf("GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS")
+        configuration.allowedHeaders = listOf("*")
+        configuration.allowCredentials = true
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
         return source
