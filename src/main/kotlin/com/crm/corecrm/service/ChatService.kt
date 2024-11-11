@@ -61,7 +61,7 @@ class ChatService(
                     text = message.text,
                     type = message.type
                 )
-            }.sortedBy { it.createdAt }
+            }.sortedByDescending { it.createdAt }
 
             val createdBy = customersById[chat.creatorBy]?.firstOrNull()?.let { customer ->
                 "${customer.firstName} ${customer.lastName} ${customer.userName}"
@@ -74,7 +74,6 @@ class ChatService(
                 createdAt = chat.createdAt,
                 status = chat.status
             )
-        }
+        }.sortedBy { it.createdAt }
     }
-
 }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class MessageRepository(dsl: DSLContext) : AbstractRepository(dsl) {
 
-    fun save(message: Message) {
+    fun save(message: Message): Message {
         val record = db.newRecord(MESSAGE).apply {
             chatId = message.chatId
             createdAt = message.createdAt
@@ -18,7 +18,8 @@ class MessageRepository(dsl: DSLContext) : AbstractRepository(dsl) {
             text = message.text
             type = message.type.toString()
         }
-        record.store()
+        val r = record.store()
+        return record.toMessage()
     }
 
     fun getMessagesByChatIds(chatIds: List<Int>): Map<Int, List<Message>> {

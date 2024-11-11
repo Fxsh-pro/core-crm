@@ -22,10 +22,11 @@ class MessageService(
         return messageRepository.getMessagesByChatIds(chatIds)
     }
 
-    fun send(message: Message) {
+    fun send(message: Message) : Message{
         val chat = chatRepository.getById(message.chatId)
-        messageRepository.save(message)
+        val savedMessage = messageRepository.save(message)
         chatRepository.setNewStatus(chat.id!!, ChatStatus.IN_WORK)
         telegramNotificationBot.sendMessage(chat.tgChatId, message.text)
+        return savedMessage
     }
 }

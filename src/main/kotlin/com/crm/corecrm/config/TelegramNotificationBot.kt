@@ -43,6 +43,7 @@ class TelegramNotificationBot(
     override fun getBotUsername(): String = botName
 
     override fun onUpdateReceived(update: Update) {
+        LOG.info("Received message: ${update.message}")
         val tgChatId = update.message.chatId.toInt()
         val tgChat = update.message.chat
         val customer = Customer(
