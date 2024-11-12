@@ -113,7 +113,6 @@ class TelegramNotificationBot(
 
         try {
             execute(sendMessage)
-            println("YES")
         } catch (e: TelegramApiException) {
             log.error("Error occurred while sending message: {}", e.message)
         }
