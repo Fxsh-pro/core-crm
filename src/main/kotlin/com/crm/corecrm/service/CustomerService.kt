@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service
 @Service
 class CustomerService(private val customerRepository: CustomerRepository) {
 
-    fun getCustomersByIds(customerIds: List<Int>) : Map<Int, List<Customer>> {
+    fun getCustomersByIds(customerIds: List<Int>) : Map<Int, Customer> {
         return customerRepository.getCustomersByIds(customerIds)
     }
 
-    fun getIdOrCreate(customer: Customer) : Int {
-        return customerRepository.getIdOrCreate(customer)
+    fun getOrCreate(customer: Customer) : Customer {
+        val existingCustomer = customerRepository.getByTgId(customer.tgId)
+        if (existingCustomer != null) {
+            return customer
+        }
+        return customerRepository.create(customer)
     }
 }

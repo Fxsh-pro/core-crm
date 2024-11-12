@@ -19,7 +19,7 @@ class SecurityConfig(
     private val jwtAuthFilter: JwtAuthenticationFilter,
     private val authenticationProvider: AuthenticationProvider,
     @Value("\${security.cors.allowed_origins:}")
-    private val  allowedOrigins: List<String>,
+    private val allowedOrigins: List<String>,
     @Value("\${security.cors.add:false}")
     private val toAdd: Boolean,
 ) {
@@ -38,7 +38,7 @@ class SecurityConfig(
     @Throws(Exception::class)
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http
-            .cors{ it.configurationSource(corsConfigurationSource(allowedOrigins)) }
+            .cors { it.configurationSource(corsConfigurationSource(allowedOrigins)) }
             .csrf { it.disable() }
             .authorizeHttpRequests { req ->
                 req
@@ -58,7 +58,7 @@ class SecurityConfig(
     @Bean
     fun corsConfigurationSource(@Value("\${security.cors.allowed_origins:}") allOrigins: List<String>): CorsConfigurationSource? {
         val configuration = CorsConfiguration()
-        val origins = mutableListOf("*")
+        val origins = mutableListOf("http://51.250.0.236:5000")
         if (toAdd) {
             origins.addAll(allOrigins)
             println("ADDED $allOrigins to Origins: $origins")

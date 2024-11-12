@@ -9,34 +9,31 @@ import org.springframework.stereotype.Repository
 @Repository
 class CustomerRepository(dsl: DSLContext) : AbstractRepository(dsl) {
 
-    fun getIdOrCreate(customer: Customer): Int {
-        val existingCustomerId = db.select(CUSTOMER.ID)
-            .from(CUSTOMER)
-            .where(CUSTOMER.TG_ID.eq(customer.tgId))
-            .fetchOneInto(Int::class.java)
-
-        return if (existingCustomerId != null) {
-            existingCustomerId
-        } else {
-            val result = db.insertInto(CUSTOMER)
-                .set(CUSTOMER.TG_ID, customer.tgId)
-                .set(CUSTOMER.FIRSTNAME, customer.firstName)
-                .set(CUSTOMER.LASTNAME, customer.lastName)
-                .set(CUSTOMER.USERNAME, customer.userName)
-                .returning(CUSTOMER.ID)
-                .fetchOne()
-
-            result?.getValue(CUSTOMER.ID)?.toInt() ?: throw IllegalStateException("Failed to create new customer")
-        }
+    fun getByTgId(tgId: Int): Customer? {
+        val record = db.selectFrom(CUSTOMER)
+            .where(CUSTOMER.TG_ID.eq(tgId))
+            .fetchOne() ?: run { return null }
+        return record.toCustomer()
     }
 
-    fun getCustomersByIds(customerIds: List<Int>): Map<Int, List<Customer>> {
+    fun create(customer: Customer): Customer {
+        val record = db.newRecord(CUSTOMER).apply {
+            tgId = customer.tgId
+            firstname = customer.firstName
+            lastname = customer.lastName
+            username = customer.userName
+        }
+        record.store()
+        return record.toCustomer()
+    }
+
+    fun getCustomersByIds(customerIds: List<Int>): Map<Int, Customer> {
         return db
             .selectFrom(CUSTOMER)
             .where(CUSTOMER.ID.`in`(customerIds))
             .fetch()
             .map { it.toCustomer() }
-            .groupBy { it.id!! }
+            .associateBy { it.id!! }
     }
 
     fun CustomerRecord.toCustomer(): Customer {

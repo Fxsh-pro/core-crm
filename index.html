@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Request Example</title>
+</head>
+<body>
+<h1>Send Fetch Request</h1>
+<button id="sendRequestBtn">Send Request</button>
+
+<script>
+    document.getElementById('sendRequestBtn').addEventListener('click', function () {
+        // fetch("http://51.250.76.218:8082/api/v1/chat/get", {
+        //     headers: {
+        //         "accept": "application/json",
+        //         "authorization": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJDUk1fQ09SRV9VU0VSIiwiaWF0IjoxNzMxNDAxNDAyLCJleHAiOjE3MzE3NjE0MDJ9.vuCNJCFyL__JpCwAGw5bqPRDldE7vzh-q8zPjUp0K-xkZkXf7az6SmUN5BbS-TYO",
+        //         "content-type": "application/json"
+        //     },
+        //     referrer: "http://localhost:3033/",
+        //     referrerPolicy: "strict-origin-when-cross-origin",
+        //     body: JSON.stringify({}),
+        //     method: "POST",
+        //     mode: "cors",
+        //     credentials: "include"
+        // })
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         console.log('Success:', data);
+        //     })
+        //     .catch(error => {
+        //         console.error('Error:', error);
+        //     });
+        fetch("http://51.250.76.218:8082/api/auth/login", {
+            "headers": {
+                "accept": "application/json",
+                "accept-language": "ru,en;q=0.9,la;q=0.8",
+                "content-type": "application/json"
+            },
+            "referrer": "http://51.250.0.236:5000/",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "body": "{\"login\":\"CRM_CORE_USER\",\"password\":\"CRM_CORE_USER_PASSWORD\"}",
+            "method": "POST",
+            "mode": "cors",
+            "credentials": "omit"
+        }).then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+
+</script>
+</body>
+</html>

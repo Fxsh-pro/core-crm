@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository
 class OperatorRepository(dsl: DSLContext) : AbstractRepository(dsl) {
     @PostConstruct
     fun t() {
-        val a = LoggerFactory.getLogger(OperatorRepository::class.java)
         println(db.selectFrom(OPERATOR).fetch())
     }
 
@@ -51,6 +50,14 @@ class OperatorRepository(dsl: DSLContext) : AbstractRepository(dsl) {
         record.store()
     }
 
+    fun getByIds(operatorIds: List<Int>): Map<Int, Operator> {
+        return db
+            .selectFrom(OPERATOR)
+            .where(OPERATOR.ID.`in`(operatorIds))
+            .fetch()
+            .map { it.toModel() }
+            .associateBy { it.getId()!! }
+    }
 
     fun OperatorRecord.toModel(): Operator {
         return Operator(

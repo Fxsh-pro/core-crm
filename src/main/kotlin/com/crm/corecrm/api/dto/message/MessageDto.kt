@@ -1,4 +1,4 @@
-package com.crm.corecrm.api.dto
+package com.crm.corecrm.api.dto.message
 
 data class MessageDto(
     val id: Int?,

@@ -26,7 +26,6 @@ class AuthenticationController(private val operatorService: OperatorService) {
         consumes = [MediaType.APPLICATION_JSON_VALUE]
     )
     fun login(@RequestBody request: LoginRequest): AuthenticationResponse {
-        print("REQUEST: $request")
         return operatorService.authenticate(request)
     }
 }
