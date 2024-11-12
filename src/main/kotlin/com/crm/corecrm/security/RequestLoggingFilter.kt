@@ -20,22 +20,20 @@ class RequestLoggingFilter : OncePerRequestFilter() {
             response: HttpServletResponse,
             filterChain: FilterChain
     ) {
-        val wrappedRequest = CachingRequestWrapper(request)
+        // val wrappedRequest = CachingRequestWrapper(request)
 
-        println("Incoming request:")
-        println("Method: ${wrappedRequest.method}")
-        println("URI: ${wrappedRequest.requestURI}")
-        println("Headers:")
-        wrappedRequest.headerNames.asIterator().forEachRemaining { headerName ->
-            println("$headerName: ${wrappedRequest.getHeader(headerName)}")
-        }
+        println("Incoming request: ${request.method} ${request.requestURI}")
 
-        if (wrappedRequest.method.equals("POST", ignoreCase = true) || wrappedRequest.method.equals("PUT", ignoreCase = true)) {
-            val body = wrappedRequest.reader.use { it.readText() }
-            println("Body: $body")
-        }
+        // wrappedRequest.headerNames.asIterator().forEachRemaining { headerName ->
+        //     println("$headerName: ${wrappedRequest.getHeader(headerName)}")
+        // }
+        //
+        // if (wrappedRequest.method.equals("POST", ignoreCase = true) || wrappedRequest.method.equals("PUT", ignoreCase = true)) {
+        //     val body = wrappedRequest.reader.use { it.readText() }
+        //     println("Body: $body")
+        // }
 
-        filterChain.doFilter(wrappedRequest, response)
+        filterChain.doFilter(request, response)
     }
 }
 
