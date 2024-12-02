@@ -55,7 +55,7 @@ class ChatService(
         val operatorIds = messages.values.flatten()
             .filter { it.type == MessageType.OUT }
             .map { it.createdBy }
-        val operatorById = operatorService.getByIds(operatorIds)
+        val operatorById = if (operatorIds.isNotEmpty()) operatorService.getByIds(operatorIds) else mapOf()
         return chats.mapNotNull {
             createChatWithMessages(it, messages, customerById, operatorById)
         }.sortedBy { it.createdAt }
