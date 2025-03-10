@@ -16,6 +16,7 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -51,6 +52,10 @@ dependencies {
      */
     implementation(group = "org.telegram", name = "telegrambots", version = "6.5.0")
 
+    /**
+     * Vk
+     */
+    implementation("com.github.yvasyliev:java-vk-bots-longpoll-api:4.1.8")
 }
 
 kotlin {

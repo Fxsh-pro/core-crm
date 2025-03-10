@@ -2,6 +2,7 @@ package com.crm.corecrm.domain.repository
 
 import com.crm.corecrm.domain.db.tables.Customer.CUSTOMER
 import com.crm.corecrm.domain.db.tables.records.CustomerRecord
+import com.crm.corecrm.domain.model.ChannelType
 import com.crm.corecrm.domain.model.Customer
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
@@ -9,16 +10,18 @@ import org.springframework.stereotype.Repository
 @Repository
 class CustomerRepository(dsl: DSLContext) : AbstractRepository(dsl) {
 
-    fun getByTgId(tgId: Int): Customer? {
+    fun getByCustomer(customer: Customer): Customer? {
         val record = db.selectFrom(CUSTOMER)
-            .where(CUSTOMER.TG_ID.eq(tgId))
+            .where(CUSTOMER.CHANNEL_ID.eq(customer.channelId))
+            .and(CUSTOMER.CHANNEL_TYPE.eq(customer.channelType.name))
             .fetchOne() ?: run { return null }
         return record.toCustomer()
     }
 
     fun create(customer: Customer): Customer {
         val record = db.newRecord(CUSTOMER).apply {
-            tgId = customer.tgId
+            channelId = customer.channelId
+            channelType = customer.channelType.name
             firstname = customer.firstName
             lastname = customer.lastName
             username = customer.userName
@@ -39,7 +42,8 @@ class CustomerRepository(dsl: DSLContext) : AbstractRepository(dsl) {
     fun CustomerRecord.toCustomer(): Customer {
         return Customer(
             id = this.id,
-            tgId = this.tgId,
+            channelId = this.channelId,
+            channelType = ChannelType.valueOf(this.channelType),
             firstName = this.firstname,
             lastName = this.lastname,
             userName = this.username

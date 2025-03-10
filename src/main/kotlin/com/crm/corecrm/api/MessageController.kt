@@ -31,7 +31,6 @@ class MessageController(
         summary = "Send a message to the user. Pass only chatId and text for the request",
     )
     fun send(@RequestBody messageDto: CreateMessageRequest): MessageDto? {
-
         val message = Message(
             chatId = messageDto.chatId,
             createdAt = (System.currentTimeMillis() / 1000).toInt(),

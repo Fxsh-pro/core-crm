@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Customer extends TableImpl<CustomerRecord> {
 
-    private static final long serialVersionUID = 861929430;
+    private static final long serialVersionUID = -1591474700;
 
     /**
      * The reference instance of <code>PUBLIC.CUSTOMER</code>
@@ -60,9 +60,14 @@ public class Customer extends TableImpl<CustomerRecord> {
     public final TableField<CustomerRecord, Integer> ID = createField("ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>PUBLIC.CUSTOMER.TG_ID</code>.
+     * The column <code>PUBLIC.CUSTOMER.CHANNEL_ID</code>.
      */
-    public final TableField<CustomerRecord, Integer> TG_ID = createField("TG_ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<CustomerRecord, Long> CHANNEL_ID = createField("CHANNEL_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+
+    /**
+     * The column <code>PUBLIC.CUSTOMER.CHANNEL_TYPE</code>.
+     */
+    public final TableField<CustomerRecord, String> CHANNEL_TYPE = createField("CHANNEL_TYPE", org.jooq.impl.SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.CUSTOMER.FIRSTNAME</code>.
@@ -121,7 +126,7 @@ public class Customer extends TableImpl<CustomerRecord> {
      */
     @Override
     public List<Index> getIndexes() {
-        return Arrays.<Index>asList(Indexes.CONSTRAINT_INDEX_5, Indexes.CONSTRAINT_INDEX_52, Indexes.PRIMARY_KEY_5);
+        return Arrays.<Index>asList(Indexes.CONSTRAINT_INDEX_5, Indexes.PRIMARY_KEY_5);
     }
 
     /**
@@ -145,7 +150,7 @@ public class Customer extends TableImpl<CustomerRecord> {
      */
     @Override
     public List<UniqueKey<CustomerRecord>> getKeys() {
-        return Arrays.<UniqueKey<CustomerRecord>>asList(Keys.CONSTRAINT_5, Keys.CONSTRAINT_52, Keys.CONSTRAINT_52C);
+        return Arrays.<UniqueKey<CustomerRecord>>asList(Keys.CONSTRAINT_5, Keys.CONSTRAINT_52);
     }
 
     /**

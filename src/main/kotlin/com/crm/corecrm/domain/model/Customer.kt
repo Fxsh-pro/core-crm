@@ -2,7 +2,8 @@ package com.crm.corecrm.domain.model
 
 data class Customer(
     val id: Int? = null,
-    val tgId : Int,
+    val channelId : Long,
+    val channelType: ChannelType,
     val firstName : String,
     val lastName : String,
     val userName : String,

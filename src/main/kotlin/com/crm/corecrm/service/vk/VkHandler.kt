@@ -1,4 +1,4 @@
-package com.crm.corecrm.service.telegram
+package com.crm.corecrm.service.vk
 
 import com.crm.corecrm.domain.model.ChannelType
 import com.crm.corecrm.domain.model.Chat
@@ -6,7 +6,7 @@ import com.crm.corecrm.domain.model.ChatStatus
 import com.crm.corecrm.domain.model.Customer
 import com.crm.corecrm.domain.model.Message
 import com.crm.corecrm.domain.model.MessageType
-import com.crm.corecrm.domain.model.telegram.TelegramMessage
+import com.crm.corecrm.domain.model.vk.VkMessage
 import com.crm.corecrm.domain.repository.ChatRepository
 import com.crm.corecrm.domain.repository.MessageRepository
 import com.crm.corecrm.service.CustomerService
@@ -15,39 +15,39 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class TelegramHandlerService(
+class VkHandler(
     private val messageRepository: MessageRepository,
     private val chatRepository: ChatRepository,
     private val customerService: CustomerService,
     private val operatorService: OperatorService,
 ) {
     @Transactional
-    fun handleIncomingMessage(telegramMessage: TelegramMessage) {
-        val user = telegramMessage.sender
+    fun handleIncomingMessage(vkMessage: VkMessage) {
+        val user = vkMessage.sender
         val customer = Customer(
-            channelId = user.tgId.toLong(),
-            firstName = user.firstName,
+            channelId = user.userId.toLong(),
+            firstName = user.name,
             lastName = user.lastName,
-            userName = user.userName,
-            channelType = ChannelType.TG
+            userName = "N/A",
+            channelType = ChannelType.VK
         )
 
         val customerId = customerService.getOrCreate(customer).id!!
 
         val chat = Chat(
-            channelId = telegramMessage.chatId.toLong(),
+            channelId = vkMessage.chatId.toLong(),
             creatorBy = customerId,
-            createdAt = telegramMessage.timestamp,
+            createdAt = vkMessage.timestamp,
             status = ChatStatus.OPEN,
-            channelType = ChannelType.TG
+            channelType = ChannelType.VK
         )
         val chatId = chatRepository.getIdOrCreate(chat)
 
         val message = Message(
             chatId = chatId,
-            createdAt = telegramMessage.timestamp,
+            createdAt = vkMessage.timestamp,
             createdBy = customerId,
-            text = telegramMessage.text,
+            text = vkMessage.text,
             type = MessageType.IN
         )
 

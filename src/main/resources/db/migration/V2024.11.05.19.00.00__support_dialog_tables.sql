@@ -8,20 +8,24 @@ CREATE TABLE IF NOT EXISTS operator
 
 CREATE TABLE IF NOT EXISTS customer
 (
-    id        serial PRIMARY KEY,
-    tg_id     INT          NOT NULL UNIQUE,
-    firstName VARCHAR(50)  NOT NULL UNIQUE,
-    lastName  VARCHAR(256) NOT NULL,
-    userName  VARCHAR(100)
+    id           serial PRIMARY KEY,
+    channel_id   BIGINT       NOT NULL,
+    channel_type VARCHAR(20)  NOT NULL,
+    firstName    VARCHAR(50)  NOT NULL,
+    lastName     VARCHAR(256) NOT NULL,
+    userName     VARCHAR(100),
+    UNIQUE (channel_id, channel_type)
 );
 
 CREATE TABLE IF NOT EXISTS chat
 (
-    id         serial PRIMARY KEY,
-    tg_chat_id INT         NOT NULL,
-    creator_by INT         NOT NULL,
-    created_at INT         NOT NULL,
-    status     VARCHAR(64) NOT NULL
+    id           serial PRIMARY KEY,
+    chat_id      BIGINT      NOT NULL,
+    channel_type VARCHAR(20) NOT NULL,
+    creator_by   INT         NOT NULL,
+    created_at   INT         NOT NULL,
+    status       VARCHAR(64) NOT NULL,
+    UNIQUE (chat_id, channel_type)
 );
 
 CREATE TABLE IF NOT EXISTS message

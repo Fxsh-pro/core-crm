@@ -39,7 +39,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Chat extends TableImpl<ChatRecord> {
 
-    private static final long serialVersionUID = 383746691;
+    private static final long serialVersionUID = -1393545407;
 
     /**
      * The reference instance of <code>PUBLIC.CHAT</code>
@@ -60,9 +60,14 @@ public class Chat extends TableImpl<ChatRecord> {
     public final TableField<ChatRecord, Integer> ID = createField("ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
-     * The column <code>PUBLIC.CHAT.TG_CHAT_ID</code>.
+     * The column <code>PUBLIC.CHAT.CHAT_ID</code>.
      */
-    public final TableField<ChatRecord, Integer> TG_CHAT_ID = createField("TG_CHAT_ID", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<ChatRecord, Long> CHAT_ID = createField("CHAT_ID", org.jooq.impl.SQLDataType.BIGINT.nullable(false), this, "");
+
+    /**
+     * The column <code>PUBLIC.CHAT.CHANNEL_TYPE</code>.
+     */
+    public final TableField<ChatRecord, String> CHANNEL_TYPE = createField("CHANNEL_TYPE", org.jooq.impl.SQLDataType.VARCHAR(20).nullable(false), this, "");
 
     /**
      * The column <code>PUBLIC.CHAT.CREATOR_BY</code>.

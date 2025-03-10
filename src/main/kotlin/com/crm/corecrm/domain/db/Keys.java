@@ -57,7 +57,6 @@ public class Keys {
     public static final UniqueKey<ChatRecord> CONSTRAINT_1F8 = UniqueKeys0.CONSTRAINT_1F8;
     public static final UniqueKey<CustomerRecord> CONSTRAINT_5 = UniqueKeys0.CONSTRAINT_5;
     public static final UniqueKey<CustomerRecord> CONSTRAINT_52 = UniqueKeys0.CONSTRAINT_52;
-    public static final UniqueKey<CustomerRecord> CONSTRAINT_52C = UniqueKeys0.CONSTRAINT_52C;
     public static final UniqueKey<MessageRecord> CONSTRAINT_6 = UniqueKeys0.CONSTRAINT_6;
     public static final UniqueKey<OperatorRecord> CONSTRAINT_1 = UniqueKeys0.CONSTRAINT_1;
     public static final UniqueKey<OperatorRecord> CONSTRAINT_10 = UniqueKeys0.CONSTRAINT_10;
@@ -86,10 +85,9 @@ public class Keys {
 
     private static class UniqueKeys0 {
         public static final UniqueKey<ChatRecord> CONSTRAINT_1F = Internal.createUniqueKey(Chat.CHAT, "CONSTRAINT_1F", Chat.CHAT.ID);
-        public static final UniqueKey<ChatRecord> CONSTRAINT_1F8 = Internal.createUniqueKey(Chat.CHAT, "CONSTRAINT_1F8", Chat.CHAT.TG_CHAT_ID);
+        public static final UniqueKey<ChatRecord> CONSTRAINT_1F8 = Internal.createUniqueKey(Chat.CHAT, "CONSTRAINT_1F8", Chat.CHAT.CHAT_ID, Chat.CHAT.CHANNEL_TYPE);
         public static final UniqueKey<CustomerRecord> CONSTRAINT_5 = Internal.createUniqueKey(Customer.CUSTOMER, "CONSTRAINT_5", Customer.CUSTOMER.ID);
-        public static final UniqueKey<CustomerRecord> CONSTRAINT_52 = Internal.createUniqueKey(Customer.CUSTOMER, "CONSTRAINT_52", Customer.CUSTOMER.TG_ID);
-        public static final UniqueKey<CustomerRecord> CONSTRAINT_52C = Internal.createUniqueKey(Customer.CUSTOMER, "CONSTRAINT_52C", Customer.CUSTOMER.FIRSTNAME);
+        public static final UniqueKey<CustomerRecord> CONSTRAINT_52 = Internal.createUniqueKey(Customer.CUSTOMER, "CONSTRAINT_52", Customer.CUSTOMER.CHANNEL_ID, Customer.CUSTOMER.CHANNEL_TYPE);
         public static final UniqueKey<MessageRecord> CONSTRAINT_6 = Internal.createUniqueKey(Message.MESSAGE, "CONSTRAINT_6", Message.MESSAGE.ID);
         public static final UniqueKey<OperatorRecord> CONSTRAINT_1 = Internal.createUniqueKey(Operator.OPERATOR, "CONSTRAINT_1", Operator.OPERATOR.ID);
         public static final UniqueKey<OperatorRecord> CONSTRAINT_10 = Internal.createUniqueKey(Operator.OPERATOR, "CONSTRAINT_10", Operator.OPERATOR.LOGIN);

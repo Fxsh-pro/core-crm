@@ -38,7 +38,6 @@ public class Indexes {
     public static final Index CONSTRAINT_INDEX_1F = Indexes0.CONSTRAINT_INDEX_1F;
     public static final Index PRIMARY_KEY_1F = Indexes0.PRIMARY_KEY_1F;
     public static final Index CONSTRAINT_INDEX_5 = Indexes0.CONSTRAINT_INDEX_5;
-    public static final Index CONSTRAINT_INDEX_52 = Indexes0.CONSTRAINT_INDEX_52;
     public static final Index PRIMARY_KEY_5 = Indexes0.PRIMARY_KEY_5;
     public static final Index CONSTRAINT_INDEX_6 = Indexes0.CONSTRAINT_INDEX_6;
     public static final Index PRIMARY_KEY_63 = Indexes0.PRIMARY_KEY_63;
@@ -57,10 +56,9 @@ public class Indexes {
     // -------------------------------------------------------------------------
 
     private static class Indexes0 {
-        public static Index CONSTRAINT_INDEX_1F = Internal.createIndex("CONSTRAINT_INDEX_1F", Chat.CHAT, new OrderField[] { Chat.CHAT.TG_CHAT_ID }, true);
+        public static Index CONSTRAINT_INDEX_1F = Internal.createIndex("CONSTRAINT_INDEX_1F", Chat.CHAT, new OrderField[] { Chat.CHAT.CHAT_ID, Chat.CHAT.CHANNEL_TYPE }, true);
         public static Index PRIMARY_KEY_1F = Internal.createIndex("PRIMARY_KEY_1F", Chat.CHAT, new OrderField[] { Chat.CHAT.ID }, true);
-        public static Index CONSTRAINT_INDEX_5 = Internal.createIndex("CONSTRAINT_INDEX_5", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.TG_ID }, true);
-        public static Index CONSTRAINT_INDEX_52 = Internal.createIndex("CONSTRAINT_INDEX_52", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.FIRSTNAME }, true);
+        public static Index CONSTRAINT_INDEX_5 = Internal.createIndex("CONSTRAINT_INDEX_5", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.CHANNEL_ID, Customer.CUSTOMER.CHANNEL_TYPE }, true);
         public static Index PRIMARY_KEY_5 = Internal.createIndex("PRIMARY_KEY_5", Customer.CUSTOMER, new OrderField[] { Customer.CUSTOMER.ID }, true);
         public static Index CONSTRAINT_INDEX_6 = Internal.createIndex("CONSTRAINT_INDEX_6", Message.MESSAGE, new OrderField[] { Message.MESSAGE.CHAT_ID }, false);
         public static Index PRIMARY_KEY_63 = Internal.createIndex("PRIMARY_KEY_63", Message.MESSAGE, new OrderField[] { Message.MESSAGE.ID }, true);

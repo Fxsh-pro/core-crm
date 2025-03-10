@@ -4,6 +4,11 @@ import com.crm.corecrm.domain.model.telegram.TelegramMessage
 import com.crm.corecrm.domain.model.telegram.TelegramUser
 import com.crm.corecrm.service.telegram.TelegramHandlerService
 import jakarta.annotation.PostConstruct
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -30,29 +35,38 @@ class TelegramNotificationBot(
 
     override fun getBotUsername(): String = botName
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onUpdateReceived(update: Update) {
-        val tgChatId = update.message.chatId.toInt()
-        val tgChat = update.message.chat
+        GlobalScope.launch {
+            try {
+                val tgChatId = update.message.chatId.toInt()
+                val tgChat = update.message.chat
 
-        val sender = TelegramUser(
-            tgId = tgChatId,
-            firstName = tgChat.firstName ?: "",
-            lastName = tgChat.lastName ?: "",
-            userName = tgChat.userName ?: "",
-        )
+                val sender = TelegramUser(
+                    tgId = tgChatId,
+                    firstName = tgChat.firstName ?: "",
+                    lastName = tgChat.lastName ?: "",
+                    userName = tgChat.userName ?: "",
+                )
 
-        val telegramMessage = TelegramMessage(
-            messageId = 0, // Initial value before being saved
-            chatId = tgChatId,
-            sender = sender,
-            text = update.message.text,
-            timestamp = update.message.date
-        )
-        LOG.info("Received message: $telegramMessage")
-        telegramHandlerService.handleIncomingMessage(telegramMessage)
+                val telegramMessage = TelegramMessage(
+                    messageId = 0, // Initial value before being saved
+                    chatId = tgChatId,
+                    sender = sender,
+                    text = update.message.text,
+                    timestamp = update.message.date
+                )
+                LOG.info("Received message: $telegramMessage")
+                withContext(Dispatchers.IO) {
+                    telegramHandlerService.handleIncomingMessage(telegramMessage)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 
-    fun sendMessage(chatId: Int, message: String) {
+    fun sendMessage(chatId: Long, message: String) {
         val sendMessage = SendMessage.builder()
             .chatId(chatId.toString())
             .text(message)

@@ -12,7 +12,7 @@ class CustomerService(private val customerRepository: CustomerRepository) {
     }
 
     fun getOrCreate(customer: Customer) : Customer {
-        val existingCustomer = customerRepository.getByTgId(customer.tgId)
+        val existingCustomer = customerRepository.getByCustomer(customer)
         if (existingCustomer != null) {
             return existingCustomer
         }
