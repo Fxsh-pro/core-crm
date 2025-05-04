@@ -53,7 +53,10 @@ class VkBot(
                 )
                 LOG.info("Received message: $messageDto")
                 withContext(Dispatchers.IO) {
-                    vkHandler.handleIncomingMessage(messageDto)
+                    val response = vkHandler.handleIncomingMessage(messageDto)
+                    if (response != null) {
+                        sendMessage(messageDto.chatId.toLong() , response.text)
+                    }
                 }
             } catch (e: VkApiException) {
                 e.printStackTrace()

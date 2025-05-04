@@ -22,7 +22,7 @@ class TelegramHandlerService(
     private val operatorService: OperatorService,
 ) {
     @Transactional
-    fun handleIncomingMessage(telegramMessage: TelegramMessage) {
+    fun handleIncomingMessage(telegramMessage: TelegramMessage): Message? {
         val user = telegramMessage.sender
         val customer = Customer(
             channelId = user.tgId.toLong(),
@@ -51,7 +51,8 @@ class TelegramHandlerService(
             type = MessageType.IN
         )
 
-        messageRepository.save(message)
+        val response = messageRepository.saveWithAutoResponse(message)
         operatorService.linkChatToOperator(chatId)
+        return response
     }
 }

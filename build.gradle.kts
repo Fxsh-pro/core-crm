@@ -56,6 +56,11 @@ dependencies {
      * Vk
      */
     implementation("com.github.yvasyliev:java-vk-bots-longpoll-api:4.1.8")
+
+    /**
+     * mail
+     */
+    implementation("com.sun.mail:jakarta.mail:2.0.1")
 }
 
 kotlin {

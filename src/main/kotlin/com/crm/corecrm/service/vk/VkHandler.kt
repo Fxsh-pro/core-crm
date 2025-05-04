@@ -22,7 +22,7 @@ class VkHandler(
     private val operatorService: OperatorService,
 ) {
     @Transactional
-    fun handleIncomingMessage(vkMessage: VkMessage) {
+    fun handleIncomingMessage(vkMessage: VkMessage): Message? {
         val user = vkMessage.sender
         val customer = Customer(
             channelId = user.userId.toLong(),
@@ -51,7 +51,8 @@ class VkHandler(
             type = MessageType.IN
         )
 
-        messageRepository.save(message)
+        val response = messageRepository.saveWithAutoResponse(message)
         operatorService.linkChatToOperator(chatId)
+        return response
     }
 }

@@ -57,9 +57,14 @@ class TelegramNotificationBot(
                     timestamp = update.message.date
                 )
                 LOG.info("Received message: $telegramMessage")
+
                 withContext(Dispatchers.IO) {
-                    telegramHandlerService.handleIncomingMessage(telegramMessage)
+                    val response = telegramHandlerService.handleIncomingMessage(telegramMessage)
+                    if (response != null) {
+                        sendMessage(telegramMessage.chatId.toLong(), response.text)
+                    }
                 }
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
